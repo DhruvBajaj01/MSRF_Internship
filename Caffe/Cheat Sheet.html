@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)http://cheatsheet-maker.herokuapp.com/sheet/61136766448a1c0015d30e3c -->
+<html lang="en"><div id="twoseven-scripts" data-info="Scripts added by TwoSeven extension" style="display: none !important; position: static !important; top: 0px !important; left: 0px !important; width: 0px !important; height: 0px !important;"><script type="text/javascript" id="__tmpScript-22101386" data-added-by-two-seven="1">(function() {
+        window.twoseven = {};
+      })();</script><script type="text/javascript" id="__tmpScript-95700837" data-added-by-two-seven="1">(function() {
+        window.twoseven.waitForDOMNode = async function t(e,t=document){e=e||{};const{type:n,value:o}=e;if(!n||!o)throw new Error("Must specify identifier");let s=o;switch(n){case"tag":s=o.toUpperCase()}if("check"!==n){const e=await i({type:"selector",value:s},[],t);if(e)return new Promise(t=>t(e))}async function i({type:e,value:t},n,o){let s;switch(e){case"tag":s=n.find(e=>e.tagName===t);break;case"selector":s=o.querySelector(t);break;case"check":for(const e of n){if(await t(e))return e}}return s}return new Promise((e,o)=>{const a=new MutationObserver(async o=>{for(const r of o)if("childList"===r.type){const o=Array.from(r.addedNodes),w=await i({type:n,value:s},o,t);if(w)return a.disconnect(),e(w)}});a.observe(t,{childList:!0,subtree:!0})})};
+      })();</script><script type="text/javascript" id="__tmpScript-93851449" data-added-by-two-seven="1">(function() {
+        
+    window.twoseven.reportError = function n(e,t,n){"string"==typeof(n=n||{})&&(n={message:n});const{message:o,stack:s}=t;Object.assign(n,{tag:e,error:{message:o,stack:s}}),window.tsExtGetPostToParent()({name:name,tag:e,action:"report-error",json:n}),console.error(JSON.stringify(n.error))}
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-767334194" data-added-by-two-seven="1">(function() {
+        
+    window.twosevenHmsToSecondsOnly = function(str) {
+        var p = str.split(':'),
+            s = 0, m = 1;
+
+        while (p.length > 0) {
+            s += m * parseInt(p.pop(), 10);
+            m *= 60;
+        }
+
+        return s;
+    }
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-421066965" data-added-by-two-seven="1">(function() {
+        window.twosevenExtLog = function(e,o,c){o||(o=e,e=void 0);let n=c||"black";if(c)switch(c){case"success":n="Green";break;case"info":n="DodgerBlue";break;case"error":n="Red";break;case"warning":n="Orange";break;default:n=c}e?console.log("%c"+e+": "+o,`color:${n}`):console.log("%c"+o,`color:${n}`)};
+      })();</script><script type="text/javascript" id="__tmpScript-939644500" data-added-by-two-seven="1">(function() {
+        
+    document.twosevenGET = function(url, callback) {
+      var xmlhttp = new XMLHttpRequest();
+
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+          if (xmlhttp.status == 200) {
+            callback(null, xmlhttp.responseText);
+          } else {
+            callback('something else other than 200 was returned', '');
+          }
+        }
+      };
+      xmlhttp.open("GET", url, true);
+      xmlhttp.send();
+    };
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-443738689" data-added-by-two-seven="1">(function() {
+        
+    window.triggerEvent = function(e,t,n,o=!1){let s;o?(n&&"string"!=typeof n&&(n=JSON.stringify(n)),s=n):s={data:n},window.twosevenScriptsDiv&&n&&"object"==typeof n&&(console.warn(`WARNING: Attempting to send an object via event.detail from CS->Page does not work on Firefox: ${JSON.stringify(n)}`),console.error((new Error).stack));var i=new CustomEvent(t,{bubbles:!0,composed:!0,detail:s});e.dispatchEvent(i)}
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-468318458" data-added-by-two-seven="1">(function() {
+        window.twoseven.postTo = async function o(e,t,n=!1){let o;return t.name=t.name||name,o=n?new Promise(e=>{const n=`ack-${t.action}-${1e9*Math.random()|0}`;t.ack={event:n};window.debug&&["play","pause","currentTime"].some(e=>t.action.includes(e)),window.addEventListener("message",function t({data:o={}}){o.action===n&&(window.removeEventListener("message",t),e(o.json))})}):new Promise(e=>e()),e.postMessage(t,"*"),o};
+      })();</script><script type="text/javascript" id="__tmpScript-199057484" data-added-by-two-seven="1">(function() {
+        window.tsExtGetPostTo = function s(){return window.twoseven&&window.twoseven.postTo||window.postTo};
+      })();</script><script type="text/javascript" id="__tmpScript-956137739" data-added-by-two-seven="1">(function() {
+        window.tsExtGetPostToParent = function i(){return window.twoseven&&window.twoseven.postToParent||window.postToParent};
+      })();</script><script type="text/javascript" id="__tmpScript-724866092" data-added-by-two-seven="1">(function() {
+        window.twoseven.postResponse = async function a(e,t){const{source:n,data:{ack:{event:o}}}=e;window.tsExtGetPostTo()(n,{action:o,json:t})};
+      })();</script><script type="text/javascript" id="__tmpScript-744861477" data-added-by-two-seven="1">(function() {
+        window.twoseven.postToParent = async function r(e,t=!1){return window.tsExtGetPostTo()(window.parent,e,t)};
+      })();</script><script type="text/javascript" id="__tmpScript-529830396" data-added-by-two-seven="1">(function() {
+        window.twoseven.postToTop = async function w(e,t=!1){return window.tsExtGetPostTo()(window.top,e,t)};
+      })();</script><script type="text/javascript" id="__tmpScript-981696815" data-added-by-two-seven="1">(function() {
+        
+    window.twoseven.getFromStorage = e=>new Promise((t,n)=>{const o="get-from-storage-"+(1e9*Math.random()|0);window.addEventListener(o,e=>{window.removeEventListener(o,this);const{detail:{data:{value:n}}}=e;t(n)}),triggerEvent(window,"get-from-storage",{key:e,evt:o})})
+    window.twoseven.saveToStorage = e=>{triggerEvent(window,"save-to-storage",e)}
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-822013578" data-added-by-two-seven="1">(function() {
+        
+    window.attachHistoryListeners = function d(){var e=history.pushState;history.pushState=function(t,n,o){return"function"==typeof history.onpushstate&&history.onpushstate({state:t}),triggerEvent(window,"pushstate",{uri:o}),e.apply(history,arguments)};var t=history.replaceState;history.replaceState=function(e){return"function"==typeof history.onreplacestate&&history.onreplacestate({state:e}),t.apply(history,arguments)}}
+    window.attachHistoryListeners()
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-854030841" data-added-by-two-seven="1">(function() {
+        window.twoseven.once = function c(e,t,n){e.addEventListener(t,function o(s){e.removeEventListener(t,o),n(s)})};
+      })();</script><script type="text/javascript" id="__tmpScript-218992255" data-added-by-two-seven="1">(function() {
+        
+    window.twoseven.isOnTwoSevenTab = async () => {
+      const result = await window.twoseven.postTo(window, { action: 'is-on-twoseven-tab' }, true)
+      return result
+    }
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-961480269" data-added-by-two-seven="1">(function() {
+        
+    window.twoseven.isPaused = async () => {
+      const result = await window.twoseven.postTo(window, { action: 'twoseven:pause-state' }, true)
+      return result
+    }
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-190333220" data-added-by-two-seven="1">(function() {
+        window.twoseven = {};
+      })();</script><script type="text/javascript" id="__tmpScript-183512105" data-added-by-two-seven="1">(function() {
+        window.twoseven.waitForDOMNode = async function t(e,t=document){e=e||{};const{type:n,value:o}=e;if(!n||!o)throw new Error("Must specify identifier");let s=o;switch(n){case"tag":s=o.toUpperCase()}if("check"!==n){const e=await i({type:"selector",value:s},[],t);if(e)return new Promise(t=>t(e))}async function i({type:e,value:t},n,o){let s;switch(e){case"tag":s=n.find(e=>e.tagName===t);break;case"selector":s=o.querySelector(t);break;case"check":for(const e of n){if(await t(e))return e}}return s}return new Promise((e,o)=>{const a=new MutationObserver(async o=>{for(const r of o)if("childList"===r.type){const o=Array.from(r.addedNodes),w=await i({type:n,value:s},o,t);if(w)return a.disconnect(),e(w)}});a.observe(t,{childList:!0,subtree:!0})})};
+      })();</script><script type="text/javascript" id="__tmpScript-921510810" data-added-by-two-seven="1">(function() {
+        
+    window.twoseven.reportError = function n(e,t,n){"string"==typeof(n=n||{})&&(n={message:n});const{message:o,stack:s}=t;Object.assign(n,{tag:e,error:{message:o,stack:s}}),window.tsExtGetPostToParent()({name:name,tag:e,action:"report-error",json:n}),console.error(JSON.stringify(n.error))}
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-392367199" data-added-by-two-seven="1">(function() {
+        
+    window.twosevenHmsToSecondsOnly = function(str) {
+        var p = str.split(':'),
+            s = 0, m = 1;
+
+        while (p.length > 0) {
+            s += m * parseInt(p.pop(), 10);
+            m *= 60;
+        }
+
+        return s;
+    }
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-983394438" data-added-by-two-seven="1">(function() {
+        window.twosevenExtLog = function(e,o,c){o||(o=e,e=void 0);let n=c||"black";if(c)switch(c){case"success":n="Green";break;case"info":n="DodgerBlue";break;case"error":n="Red";break;case"warning":n="Orange";break;default:n=c}e?console.log("%c"+e+": "+o,`color:${n}`):console.log("%c"+o,`color:${n}`)};
+      })();</script><script type="text/javascript" id="__tmpScript-878002821" data-added-by-two-seven="1">(function() {
+        
+    document.twosevenGET = function(url, callback) {
+      var xmlhttp = new XMLHttpRequest();
+
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+          if (xmlhttp.status == 200) {
+            callback(null, xmlhttp.responseText);
+          } else {
+            callback('something else other than 200 was returned', '');
+          }
+        }
+      };
+      xmlhttp.open("GET", url, true);
+      xmlhttp.send();
+    };
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-544580765" data-added-by-two-seven="1">(function() {
+        
+    window.triggerEvent = function(e,t,n,o=!1){let s;o?(n&&"string"!=typeof n&&(n=JSON.stringify(n)),s=n):s={data:n},window.twosevenScriptsDiv&&n&&"object"==typeof n&&(console.warn(`WARNING: Attempting to send an object via event.detail from CS->Page does not work on Firefox: ${JSON.stringify(n)}`),console.error((new Error).stack));var i=new CustomEvent(t,{bubbles:!0,composed:!0,detail:s});e.dispatchEvent(i)}
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-481055148" data-added-by-two-seven="1">(function() {
+        window.twoseven.postTo = async function o(e,t,n=!1){let o;return t.name=t.name||name,o=n?new Promise(e=>{const n=`ack-${t.action}-${1e9*Math.random()|0}`;t.ack={event:n};window.debug&&["play","pause","currentTime"].some(e=>t.action.includes(e)),window.addEventListener("message",function t({data:o={}}){o.action===n&&(window.removeEventListener("message",t),e(o.json))})}):new Promise(e=>e()),e.postMessage(t,"*"),o};
+      })();</script><script type="text/javascript" id="__tmpScript-837499278" data-added-by-two-seven="1">(function() {
+        window.tsExtGetPostTo = function s(){return window.twoseven&&window.twoseven.postTo||window.postTo};
+      })();</script><script type="text/javascript" id="__tmpScript-842934307" data-added-by-two-seven="1">(function() {
+        window.tsExtGetPostToParent = function i(){return window.twoseven&&window.twoseven.postToParent||window.postToParent};
+      })();</script><script type="text/javascript" id="__tmpScript-393647598" data-added-by-two-seven="1">(function() {
+        window.twoseven.postResponse = async function a(e,t){const{source:n,data:{ack:{event:o}}}=e;window.tsExtGetPostTo()(n,{action:o,json:t})};
+      })();</script><script type="text/javascript" id="__tmpScript-325954541" data-added-by-two-seven="1">(function() {
+        window.twoseven.postToParent = async function r(e,t=!1){return window.tsExtGetPostTo()(window.parent,e,t)};
+      })();</script><script type="text/javascript" id="__tmpScript-576908545" data-added-by-two-seven="1">(function() {
+        window.twoseven.postToTop = async function w(e,t=!1){return window.tsExtGetPostTo()(window.top,e,t)};
+      })();</script><script type="text/javascript" id="__tmpScript-725598510" data-added-by-two-seven="1">(function() {
+        
+    window.twoseven.getFromStorage = e=>new Promise((t,n)=>{const o="get-from-storage-"+(1e9*Math.random()|0);window.addEventListener(o,e=>{window.removeEventListener(o,this);const{detail:{data:{value:n}}}=e;t(n)}),triggerEvent(window,"get-from-storage",{key:e,evt:o})})
+    window.twoseven.saveToStorage = e=>{triggerEvent(window,"save-to-storage",e)}
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-51098722" data-added-by-two-seven="1">(function() {
+        
+    window.attachHistoryListeners = function d(){var e=history.pushState;history.pushState=function(t,n,o){return"function"==typeof history.onpushstate&&history.onpushstate({state:t}),triggerEvent(window,"pushstate",{uri:o}),e.apply(history,arguments)};var t=history.replaceState;history.replaceState=function(e){return"function"==typeof history.onreplacestate&&history.onreplacestate({state:e}),t.apply(history,arguments)}}
+    window.attachHistoryListeners()
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-880703965" data-added-by-two-seven="1">(function() {
+        window.twoseven.once = function c(e,t,n){e.addEventListener(t,function o(s){e.removeEventListener(t,o),n(s)})};
+      })();</script><script type="text/javascript" id="__tmpScript-446280553" data-added-by-two-seven="1">(function() {
+        
+    window.twoseven.isOnTwoSevenTab = async () => {
+      const result = await window.twoseven.postTo(window, { action: 'is-on-twoseven-tab' }, true)
+      return result
+    }
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-501972326" data-added-by-two-seven="1">(function() {
+        
+    window.twoseven.isPaused = async () => {
+      const result = await window.twoseven.postTo(window, { action: 'twoseven:pause-state' }, true)
+      return result
+    }
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-543793258" data-added-by-two-seven="1">(function() {
+        
+      const modal = document.querySelector('.twoseven-ext-tab-media-modal')
+      const modalCloseBtn = modal.querySelector('.close')
+      function closeModal () {
+        modal.style.display = 'none'
+        const frame = document.querySelector('#twoseven-ext-tab-media-iframe').contentWindow
+        frame.postMessage({
+          __evt_name: 'modal-hide'
+        }, '*')
+      }
+      modalCloseBtn.onclick = closeModal
+
+      window.onmessage = function (e) {
+        if (e.data.__evt_name === 'modal-hide') {
+          closeModal()
+        }
+      }
+
+      window.twoseven.closeTabMediaModal = closeModal
+
+      window.onclick = function (e) {
+        if (e.target.id === 'twoseven-ext-tab-media-modal' && modal.style.display === 'block') {
+            closeModal()
+        }
+      }
+    ;
+      })();</script></div><link type="text/css" rel="stylesheet" id="dark-mode-custom-link"><link type="text/css" rel="stylesheet" id="dark-mode-general-link"><style lang="en" type="text/css" id="dark-mode-custom-style"></style><style lang="en" type="text/css" id="dark-mode-native-style"></style><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="icon" href="http://cheatsheet-maker.herokuapp.com/favicon.ico"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#000000"><meta name="description" content="A web application to create and share markdown based cheat sheets. Built with create-react-app. "><link rel="apple-touch-icon" href="http://cheatsheet-maker.herokuapp.com/logo192.png"><link rel="manifest" href="http://cheatsheet-maker.herokuapp.com/manifest.json"><title>Cheat Sheet</title><link href="./Cheat Sheet_files/main.8dd53390.chunk.css" rel="stylesheet"><link href="chrome-extension://cjdnfmjmdligcpfcekfmenlhiopehjkd/web_resources/modal/modal.css" rel="stylesheet" id="__tmpStyle"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"><div class="overflow-x-hidden relative"><div><div class="w-screen min-h-screen bg-gray-50 flex justify-center overflow-auto"><div class="w-full h-screen max-w-screen-2xl flex flex-col space-y-10 p-2"><header class="flex justify-between items-center"><a class="group font-bold font-mono  grid grid-cols-5  text-blue-500 cursor-pointer text-2xl w-28 focus-yellow 
+      " href="http://cheatsheet-maker.herokuapp.com/"><div class="
+            border-blue-300 flex justify-center transition duration-300 ease-in-out group-hover:border-opacity-0
+            border-l-0 
+            border-b 
+            ">c</div><div class="
+            border-blue-300 flex justify-center transition duration-300 ease-in-out group-hover:border-opacity-0
+            border-l 
+            border-b 
+            ">h</div><div class="
+            border-blue-300 flex justify-center transition duration-300 ease-in-out group-hover:border-opacity-0
+            border-l 
+            border-b 
+            ">e</div><div class="
+            border-blue-300 flex justify-center transition duration-300 ease-in-out group-hover:border-opacity-0
+            border-l 
+            border-b 
+            ">a</div><div class="
+            border-blue-300 flex justify-center transition duration-300 ease-in-out group-hover:border-opacity-0
+            border-l 
+            border-b 
+            ">t</div><div class="
+            border-blue-300 flex justify-center transition duration-300 ease-in-out group-hover:border-opacity-0
+            border-l-0 
+            border-b-0 
+            ">s</div><div class="
+            border-blue-300 flex justify-center transition duration-300 ease-in-out group-hover:border-opacity-0
+            border-l 
+            border-b-0 
+            ">h</div><div class="
+            border-blue-300 flex justify-center transition duration-300 ease-in-out group-hover:border-opacity-0
+            border-l 
+            border-b-0 
+            ">e</div><div class="
+            border-blue-300 flex justify-center transition duration-300 ease-in-out group-hover:border-opacity-0
+            border-l 
+            border-b-0 
+            ">e</div><div class="
+            border-blue-300 flex justify-center transition duration-300 ease-in-out group-hover:border-opacity-0
+            border-l 
+            border-b-0 
+            ">t</div></a><div class="mt-4 md:mt-0"><div class="relative"><div class="text-base"><button class="flex items-center space-x-1 justify-center focus-yellow  bg-blue-200 text-blue-500 rounded-full p-3 transition duration-300 ease-in-out hover:opacity-70" title=""><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"></path></svg><span class="sr-only">Open user menu</span></button></div></div></div></header><div class="pb-10"><main class="rounded-sm shadow-sm py-10 px-2 md:px-5 lg:px-10 bg-white"><div class="w-full px-2 py-3 md:px-6 text-white flex flex-col items-center md:flex-row  md:justify-between overflow-hidden 
+      border-2 
+      bg-mango-500 
+      border-mango-600 
+      rounded-xl"><div class="flex flex-col space-y-2"><h1 class="text-xl font-bold md:text-2xl lg:text-3xl"> PYCAFFE CHEATSHEET</h1><div class="flex space-x-5 items-center justify-center md:justify-start"><p class="font-semibold">By <a class="underline" href="http://cheatsheet-maker.herokuapp.com/user/6113671d448a1c0015d30e3b">9653dhr@gmail.com</a></p><div class="md:hidden"><div class="flex space-x-3"><button class="flex items-center space-x-1 justify-center focus-yellow   w-7 h-7 md:w-10 md:h-10 md:text-xl rounded-full bg-mango-200 text-mango-500  transition duration-300 ease-in-out hover:opacity-70" title="edit"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M257.7 752c2 0 4-.2 6-.5L431.9 722c2-.4 3.9-1.3 5.3-2.8l423.9-423.9a9.96 9.96 0 0 0 0-14.1L694.9 114.9c-1.9-1.9-4.4-2.9-7.1-2.9s-5.2 1-7.1 2.9L256.8 538.8c-1.5 1.5-2.4 3.3-2.8 5.3l-29.5 168.2a33.5 33.5 0 0 0 9.4 29.8c6.6 6.4 14.9 9.9 23.8 9.9zm67.4-174.4L687.8 215l73.3 73.3-362.7 362.6-88.9 15.7 15.6-89zM880 836H144c-17.7 0-32 14.3-32 32v36c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-36c0-17.7-14.3-32-32-32z"></path></svg></button><button class="flex items-center space-x-1 justify-center focus-yellow   w-7 h-7 md:w-10 md:h-10 md:text-xl rounded-full bg-mango-200 text-mango-500  transition duration-300 ease-in-out hover:opacity-70" title="remove from favorites"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 0 0 .6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0 0 46.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"></path></svg></button><button class="flex items-center space-x-1 justify-center focus-yellow   w-7 h-7 md:w-10 md:h-10 md:text-xl rounded-full bg-mango-200 text-mango-500  transition duration-300 ease-in-out hover:opacity-70" title=""><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M448 248L288 96v85.334C138.666 202.667 85.333 309.334 64 416c53.333-74.666 117.333-108.802 224-108.802v87.469L448 248z"></path></svg></button></div></div></div></div><div class="hidden md:block"><div class="flex space-x-3"><button class="flex items-center space-x-1 justify-center focus-yellow   w-7 h-7 md:w-10 md:h-10 md:text-xl rounded-full bg-mango-200 text-mango-500  transition duration-300 ease-in-out hover:opacity-70" title="edit"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M257.7 752c2 0 4-.2 6-.5L431.9 722c2-.4 3.9-1.3 5.3-2.8l423.9-423.9a9.96 9.96 0 0 0 0-14.1L694.9 114.9c-1.9-1.9-4.4-2.9-7.1-2.9s-5.2 1-7.1 2.9L256.8 538.8c-1.5 1.5-2.4 3.3-2.8 5.3l-29.5 168.2a33.5 33.5 0 0 0 9.4 29.8c6.6 6.4 14.9 9.9 23.8 9.9zm67.4-174.4L687.8 215l73.3 73.3-362.7 362.6-88.9 15.7 15.6-89zM880 836H144c-17.7 0-32 14.3-32 32v36c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-36c0-17.7-14.3-32-32-32z"></path></svg></button><button class="flex items-center space-x-1 justify-center focus-yellow   w-7 h-7 md:w-10 md:h-10 md:text-xl rounded-full bg-mango-200 text-mango-500  transition duration-300 ease-in-out hover:opacity-70" title="remove from favorites"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 0 0 .6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0 0 46.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"></path></svg></button><button class="flex items-center space-x-1 justify-center focus-yellow   w-7 h-7 md:w-10 md:h-10 md:text-xl rounded-full bg-mango-200 text-mango-500  transition duration-300 ease-in-out hover:opacity-70" title=""><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M448 248L288 96v85.334C138.666 202.667 85.333 309.334 64 416c53.333-74.666 117.333-108.802 224-108.802v87.469L448 248z"></path></svg></button></div></div></div><section class="w-full mt-4 flex flex-col space-y-5"><div class="md:mt-8 flex flex-wrap lg:flex-nowrap space-y-5 lg:space-y-0 space-x-0 lg:space-x-6 xl:space-x-8"><div class="w-full flex flex-col space-y-5 lg:w-1/2"><div class="w-full"><div class="w-full h-12 flex  items-center justify-center
+            bg-mango-500 
+            rounded-t-xl 
+            border-2 
+            border-b-0 border-mango-600"><h3 class="text-xl text-gray-50 font-bold 
+              opacity-100">CPU  Mode</h3></div><div class="w-full"><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-50
+                  py-2 
+                  rounded-b-xl border-b-2"><p data-sourcepos="1:1-1:22">caffe.set_mode_cpu()</p></div></div></div><div class="w-full"><div class="w-full h-12 flex  items-center justify-center
+            bg-mango-500 
+            rounded-t-xl 
+            border-2 
+            border-b-0 border-mango-600"><h3 class="text-xl text-gray-50 font-bold 
+              opacity-100">GPU Mode</h3></div><div class="w-full"><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-50
+                  py-2 
+                  rounded-b-xl border-b-2"><p data-sourcepos="1:1-1:21">caffe.set_mode_gpu()</p></div></div></div><div class="w-full"><div class="w-full h-12 flex  items-center justify-center
+            bg-mango-500 
+            rounded-t-xl 
+            border-2 
+            border-b-0 border-mango-600"><h3 class="text-xl text-gray-50 font-bold 
+              opacity-100">Net</h3></div><div class="w-full"><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-50
+                  py-2 
+                  "><p data-sourcepos="1:1-1:87">The main class that the pycaffe interface exposes is the Net. It has two constructors:</p></div><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-200
+                  py-2 
+                  "><p data-sourcepos="1:1-1:72">Create a Net (in this case using the Data Layer specified for training)</p></div><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-50
+                  py-2 
+                  "><p data-sourcepos="1:1-1:63">net = caffe.Net('/path/prototxt/descriptor/file', caffe.TRAIN)</p></div><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-200
+                  py-2 
+                  "><p data-sourcepos="1:1-1:150">Creates a Net and automatically loads the weights as saved in the provided caffemodel file - in this case using the Data Layer specified for testing.</p></div><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-50
+                  py-2 
+                  rounded-b-xl border-b-2"><p data-sourcepos="1:1-1:95">net = caffe.Net('/path/prototxt/descriptor/file', '/path/caffemodel/weights/file', caffe.TEST)</p></div></div></div><div class="w-full"><div class="w-full h-12 flex  items-center justify-center
+            bg-mango-500 
+            rounded-t-xl 
+            border-2 
+            border-b-0 border-mango-600"><h3 class="text-xl text-gray-50 font-bold 
+              opacity-100"> Net.blobs</h3></div><div class="w-full"><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-50
+                  py-2 
+                  rounded-b-xl border-b-2"><p data-sourcepos="1:1-3:38">data = net.blobs['data'].data
+net.blobs['data'].data[...] = my_image
+fc_activations = net.blobs['fc'].data</p></div></div></div><div class="w-full"><div class="w-full h-12 flex  items-center justify-center
+            bg-mango-500 
+            rounded-t-xl 
+            border-2 
+            border-b-0 border-mango-600"><h3 class="text-xl text-gray-50 font-bold 
+              opacity-100">Parameters</h3></div><div class="w-full"><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-50
+                  py-2 
+                  rounded-b-xl border-b-2"><p data-sourcepos="1:1-2:44">nice_edge_detectors = net.params['conv'].data
+higher_level_filter = net.params['fc'].data</p></div></div></div><div class="w-full"><div class="w-full h-12 flex  items-center justify-center
+            bg-mango-500 
+            rounded-t-xl 
+            border-2 
+            border-b-0 border-mango-600"><h3 class="text-xl text-gray-50 font-bold 
+              opacity-100">forward() </h3></div><div class="w-full"><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-50
+                  py-2 
+                  "><p data-sourcepos="1:1-1:21">Add Data to the net</p></div><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-200
+                  py-2 
+                  rounded-b-xl border-b-2"><p data-sourcepos="1:1-2:47">net.forward(start='conv', end='fc')
+softmax_probabilities = net.blobs['prob'].data</p></div></div></div><div class="w-full"><div class="w-full h-12 flex  items-center justify-center
+            bg-mango-500 
+            rounded-t-xl 
+            border-2 
+            border-b-0 border-mango-600"><h3 class="text-xl text-gray-50 font-bold 
+              opacity-100">backward() </h3></div><div class="w-full"><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-50
+                  py-2 
+                  "><p data-sourcepos="1:1-1:20">Computing gradients</p></div><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-200
+                  py-2 
+                  rounded-b-xl border-b-2"><p data-sourcepos="1:1-2:47">net.backward(start='conv1', end='fc')
+softmax_probabilities = net.blobs['prob'].data</p></div></div></div></div><div class="w-full flex flex-col space-y-5 lg:w-1/2"><div class="w-full"><div class="w-full h-12 flex  items-center justify-center
+            bg-mango-500 
+            rounded-t-xl 
+            border-2 
+            border-b-0 border-mango-600"><h3 class="text-xl text-gray-50 font-bold 
+              opacity-100">Solver</h3></div><div class="w-full"><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-50
+                  py-2 
+                  "><p data-sourcepos="1:2-1:46">Solver needed in order to train a caffe mode</p></div><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-200
+                  py-2 
+                  "><p data-sourcepos="1:1-1:58">solver = caffe.SGDSolver('/path/to/solver/prototxt/file')</p></div><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-50
+                  py-2 
+                  "><p data-sourcepos="1:1-1:33">The networks are accessible with</p></div><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-200
+                  py-2 
+                  rounded-b-xl border-b-2"><p data-sourcepos="1:1-1:95">training_net = solver.net test_net = solver.test_nets[0] # more than one test net is supported</p></div></div></div><div class="w-full"><div class="w-full h-12 flex  items-center justify-center
+            bg-mango-500 
+            rounded-t-xl 
+            border-2 
+            border-b-0 border-mango-600"><h3 class="text-xl text-gray-50 font-bold 
+              opacity-100">Solver iteration</h3></div><div class="w-full"><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-50
+                  py-2 
+                  "><p data-sourcepos="1:1-1:44">A forward/backward pass with weight update,</p></div><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-200
+                  py-2 
+                  "><p data-sourcepos="1:1-1:15">solver.step(1)</p></div><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-50
+                  py-2 
+                  "><p data-sourcepos="1:2-1:41">Run the solver until the last iteration</p></div><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-200
+                  py-2 
+                  rounded-b-xl border-b-2"><p data-sourcepos="1:1-1:15">solver.solve()</p></div></div></div><div class="w-full"><div class="w-full h-12 flex  items-center justify-center
+            bg-mango-500 
+            rounded-t-xl 
+            border-2 
+            border-b-0 border-mango-600"><h3 class="text-xl text-gray-50 font-bold 
+              opacity-100"> Testing</h3></div><div class="w-full"><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-50
+                  py-2 
+                  rounded-b-xl border-b-2"><p data-sourcepos="1:1-1:67">net = caffe.Net(deploy_prototxt_path, caffemodel_path, caffe.TEST)</p></div></div></div><div class="w-full"><div class="w-full h-12 flex  items-center justify-center
+            bg-mango-500 
+            rounded-t-xl 
+            border-2 
+            border-b-0 border-mango-600"><h3 class="text-xl text-gray-50 font-bold 
+              opacity-100">Transformer</h3></div><div class="w-full"><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-50
+                  py-2 
+                  rounded-b-xl border-b-2"><p data-sourcepos="1:1-1:98">transformer = caffe.io.Transformer({'data': (1, image.shape[2], image.shape[0], image.shape[1])})</p></div></div></div><div class="w-full"><div class="w-full h-12 flex  items-center justify-center
+            bg-mango-500 
+            rounded-t-xl 
+            border-2 
+            border-b-0 border-mango-600"><h3 class="text-xl text-gray-50 font-bold 
+              opacity-100">PoolMethod</h3></div><div class="w-full"><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-50
+                  py-2 
+                  rounded-b-xl border-b-2"><p data-sourcepos="1:1-1:21">caffe.params.Pooling</p></div></div></div><div class="w-full"><div class="w-full h-12 flex  items-center justify-center
+            bg-mango-500 
+            rounded-t-xl 
+            border-2 
+            border-b-0 border-mango-600"><h3 class="text-xl text-gray-50 font-bold 
+              opacity-100">Data augmentation</h3></div><div class="w-full"><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-50
+                  py-2 
+                  rounded-b-xl border-b-2"><p data-sourcepos="1:1-1:24">tools.data_augmentation</p></div></div></div><div class="w-full"><div class="w-full h-12 flex  items-center justify-center
+            bg-mango-500 
+            rounded-t-xl 
+            border-2 
+            border-b-0 border-mango-600"><h3 class="text-xl text-gray-50 font-bold 
+              opacity-100">Monitoring</h3></div><div class="w-full"><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-50
+                  py-2 
+                  rounded-b-xl border-b-2"><p data-sourcepos="1:1-1:32">tools.solvers.MonitoringSolver</p></div></div></div><div class="w-full"><div class="w-full h-12 flex  items-center justify-center
+            bg-mango-500 
+            rounded-t-xl 
+            border-2 
+            border-b-0 border-mango-600"><h3 class="text-xl text-gray-50 font-bold 
+              opacity-100"> Transformation</h3></div><div class="w-full"><div class="prose break-words whitespace-pre-wrap w-full max-w-full px-2 
+                  border-l-2 
+                  border-r-2 
+                  border-mango-600
+                  bg-mango-50
+                  py-2 
+                  rounded-b-xl border-b-2"><p data-sourcepos="1:1-1:28">tools.prototxt.train2deploy</p></div></div></div></div></div></section></main></div></div></div></div><div id="modal-root"></div></div></div><script>!function(e){function t(t){for(var n,a,l=t[0],f=t[1],i=t[2],p=0,s=[];p<l.length;p++)a=l[p],Object.prototype.hasOwnProperty.call(o,a)&&o[a]&&s.push(o[a][0]),o[a]=0;for(n in f)Object.prototype.hasOwnProperty.call(f,n)&&(e[n]=f[n]);for(c&&c(t);s.length;)s.shift()();return u.push.apply(u,i||[]),r()}function r(){for(var e,t=0;t<u.length;t++){for(var r=u[t],n=!0,l=1;l<r.length;l++){var f=r[l];0!==o[f]&&(n=!1)}n&&(u.splice(t--,1),e=a(a.s=r[0]))}return e}var n={},o={1:0},u=[];function a(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,a),r.l=!0,r.exports}a.m=e,a.c=n,a.d=function(e,t,r){a.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},a.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},a.t=function(e,t){if(1&t&&(e=a(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(a.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var n in e)a.d(r,n,function(t){return e[t]}.bind(null,n));return r},a.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return a.d(t,"a",t),t},a.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},a.p="/";var l=this["webpackJsonpcheat-sheet-maker"]=this["webpackJsonpcheat-sheet-maker"]||[],f=l.push.bind(l);l.push=t,l=l.slice();for(var i=0;i<l.length;i++)t(l[i]);var c=f;r()}([])</script><script src="./Cheat Sheet_files/2.0482beb3.chunk.js.download"></script><script src="./Cheat Sheet_files/main.cf7cafbb.chunk.js.download"></script><div>
+    <div id="twoseven-ext-tab-media-modal" class="twoseven-ext-tab-media-modal" style="display: none;">
+      <!-- Modal content -->
+      <div class="twoseven-ext-tab-media-modal-content">
+        <div class="iframe-container" style="height: 100%; width: 100%;">
+          <span class="close">×</span>
+        </div>
+      </div>
+    </div></div></body></html>
