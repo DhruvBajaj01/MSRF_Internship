@@ -1,4 +1,4 @@
-MSRF_Internship
+
 
 For facilitating the autocomplete feature using NLP, the process is broken down into two steps-
 1. Text Preprocessing
