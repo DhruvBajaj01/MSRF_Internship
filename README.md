@@ -2,6 +2,6 @@
 
 
 1. ML Autocompletion Feature
-2. Caffe Liubrary
+2. Caffe Library
 3. Speeded Up Robust Features(SURF)
 
